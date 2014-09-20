@@ -3,5 +3,7 @@
     "base_url": "http://api.ents24.com",
 
     "includes": [
+      "artist.json",
+      "auth.json"
     ]
 }

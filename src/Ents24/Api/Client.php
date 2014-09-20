@@ -11,7 +11,9 @@ class Client extends GuzzleClient
         $client = parent::factory($config);
 
         $descriptionPath = realpath(__DIR__ . '/../../../api/index.json');
-        $client->setDescription(ServiceDescription::factory($descriptionPath));
+        $description = ServiceDescription::factory($descriptionPath);
+        $client->setDescription($description);
+        $client->setBaseUrl($description->getData('base_url'));
 
         return $client;
     }

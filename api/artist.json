@@ -1,0 +1,33 @@
+{
+  "operations": {
+
+    "GetArtist": {
+      "httpMethod": "GET",
+      "uri": "artist/read",
+      "summary": "Fetch data about a single artist",
+      "parameters": {
+        "id": {
+          "location": "query",
+          "description": "Unique identifier string of the Artist you want full details for",
+          "required": true
+        },
+        "incl_events": {
+          "location": "query",
+          "description": "Decides whether or not a list of events the artists is performing at is included in the response.",
+          "required": false
+        },
+        "incl_images": {
+          "location": "query",
+          "description": "Decides whether or not an artist images are included in the response.",
+          "required": false
+        },
+        "full_description": {
+          "location": "query",
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "required": false
+        }
+      }
+    }
+
+  }
+}
