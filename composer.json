@@ -18,8 +18,8 @@
   ],
 
   "autoload": {
-    "psr-0": {
-      "Ents24\\": "src/"
+    "psr-4": {
+      "Ents24\\Api\\": "src/"
     }
   },
 

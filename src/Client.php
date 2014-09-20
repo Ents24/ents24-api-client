@@ -13,7 +13,7 @@ class Client extends GuzzleClient
     {
         $client = parent::factory($config);
 
-        $descriptionPath = realpath(__DIR__ . '/../../../api/index.json');
+        $descriptionPath = realpath(__DIR__ . '/../api/index.json');
         $description = ServiceDescription::factory($descriptionPath);
 
         $session = new Session($client);
