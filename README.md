@@ -6,6 +6,13 @@ Ents24 API Client
 
 This is a PHP client for [Ents24's API](http://docs.api.ents24.com/).
 
+Installation
+------------
+
+Add the following to the `require` section of your project's `composer.json`.
+
+    "hnrysmth/ents24-api-client": "dev-master"
+
 Usage
 -----
 
