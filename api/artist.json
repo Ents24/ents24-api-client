@@ -35,6 +35,38 @@
           "required": false
         }
       }
+    },
+
+    "GetArtistImage": {
+      "httpMethod": "GET",
+      "uri": "artist/image",
+      "summary": "An artist image retrieved as either a JSON object or JPEG image.",
+      "parameters": {
+        "id": {
+          "location": "query",
+          "description": "Unique identifier string of the Event you want an image for.",
+          "required": true
+        },
+        "size": {
+          "location": "query",
+          "description": "Size of image you want",
+          "required": false,
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ]
+        },
+        "format": {
+          "location": "query",
+          "description": "The format of the response you want back from the resource",
+          "required": false,
+          "enum": [
+            "jpeg",
+            "json"
+          ]
+        }
+      }
     }
 
   }
