@@ -1,6 +1,9 @@
 Ents24 API Client
 =================
 
+[![Build Status](https://travis-ci.org/hnrysmth/ents24-api-client.svg?branch=master)](https://travis-ci.org/hnrysmth/ents24-api-client)
+[![Code Climate](https://codeclimate.com/github/hnrysmth/ents24-api-client/badges/gpa.svg)](https://codeclimate.com/github/hnrysmth/ents24-api-client)
+
 This is a PHP client for [Ents24's API](http://docs.api.ents24.com/).
 
 Usage
