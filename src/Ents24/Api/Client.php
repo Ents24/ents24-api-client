@@ -18,11 +18,23 @@ class Client extends GuzzleClient
 
         $session = new Session($client);
 
+        $client->setId($config['client_id']);
+        $client->setSecret($config['client_secret']);
         $client->setDescription($description);
         $client->setBaseUrl($description->getData('base_url'));
         $client->addSubscriber($session);
 
         return $client;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
     }
 
     public function getId()
