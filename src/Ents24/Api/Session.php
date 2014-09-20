@@ -26,7 +26,9 @@ class Session implements EventSubscriberInterface
 
     public function onRequestBeforeSend(Event $event)
     {
-        if ($this->accessToken === null) {
+        $request = $event['request'];
+
+        if ($this->accessToken === null && !preg_match('#^/auth/token#', $request->getPath())) {
             $tokenRequest = $this->client->getCommand(
                 'RequestAccessToken',
                 [
@@ -38,7 +40,6 @@ class Session implements EventSubscriberInterface
             $this->accessToken = $tokenResponse['access_token'];
         }
 
-        $request = $event['request'];
         $request->setHeader('Authorization', $this->accessToken);
     }
 }
