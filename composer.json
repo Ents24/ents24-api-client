@@ -1,0 +1,34 @@
+{
+
+  "name": "hnrysmth/ents24-api-client",
+  "description": "API Client For Ents24",
+  "keywords": [
+    "ents24",
+    "api",
+    "client"
+  ],
+
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Henry Smith",
+      "email": "henry@henrysmith.org",
+      "homepage": "http://henrysmith.org"
+    }
+  ],
+
+  "autoload": {
+    "psr-0": {
+      "Ents24\\": "src/"
+    }
+  },
+
+  "require": {
+    "php": ">=5.4.0",
+    "guzzle/guzzle": "3.9.2",
+    "mockery/mockery": "dev-master",
+    "phpunit/phpunit": "3.7.*@dev",
+    "squizlabs/php_codesniffer": "1.*"
+  }
+
+}
