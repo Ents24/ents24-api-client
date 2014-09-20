@@ -8,46 +8,51 @@
       "parameters": {
         "genre": {
           "description": "The genre of artist you want listed.",
+          "type": "string",
           "location": "query",
           "required": false
         },
         "event": {
           "description": "The name for an event you want an artists listing for.",
+          "type": "string",
           "location": "query",
           "required": false
         },
         "event_id": {
           "description": "The unique identifier for an event you want an artists listing for.",
+          "type": "string",
           "location": "query",
           "required": false
         },
         "results_per_page": {
           "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "100"],
+          "type": "integer",
           "location": "query",
-          "required": false,
-          "enum": [
-            "25",
-            "50",
-            "100"
-          ]
+          "required": false
         },
         "page": {
           "description": "The page/chunk of results to be requested.",
+          "type": "integer",
           "location": "query",
           "required": false
         },
         "incl_image": {
           "description": "Decides whether or not an artist image is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
           "location": "query",
           "required": false
         },
         "full_description": {
           "description": "Decides whether full or summarised description text is included in the response.",
+          "type": "string",
           "location": "query",
           "required": false
         },
         "updated_since": {
-          "description": "Only retrive artists that have been added/updated since the given date.",
+          "description": "Only retrive artists that have been added/updated since the given date (YYYY-MM-DD).",
+          "type": "string",
           "location": "query",
           "required": false
         }
@@ -60,23 +65,30 @@
       "summary": "Fetch data about a single artist",
       "parameters": {
         "id": {
-          "location": "query",
           "description": "Unique identifier string of the Artist you want full details for",
+          "type": "string",
+          "location": "query",
           "required": true
         },
         "incl_events": {
-          "location": "query",
           "description": "Decides whether or not a list of events the artists is performing at is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
           "required": false
         },
         "incl_images": {
-          "location": "query",
           "description": "Decides whether or not an artist images are included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
           "required": false
         },
         "full_description": {
-          "location": "query",
           "description": "Decides whether full or summarised description text is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
           "required": false
         }
       }
@@ -88,28 +100,24 @@
       "summary": "An artist image retrieved as either a JSON object or JPEG image.",
       "parameters": {
         "id": {
-          "location": "query",
           "description": "Unique identifier string of the Event you want an image for.",
+          "type": "string",
+          "location": "query",
           "required": true
         },
         "size": {
-          "location": "query",
           "description": "Size of image you want",
-          "required": false,
-          "enum": [
-            "small",
-            "medium",
-            "large"
-          ]
+          "enum": ["small", "medium", "large"],
+          "type": "string",
+          "location": "query",
+          "required": false
         },
         "format": {
-          "location": "query",
           "description": "The format of the response you want back from the resource",
-          "required": false,
-          "enum": [
-            "jpeg",
-            "json"
-          ]
+          "enum": ["jpeg", "json"],
+          "type": "string",
+          "location": "query",
+          "required": false
         }
       }
     }
