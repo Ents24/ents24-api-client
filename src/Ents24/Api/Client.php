@@ -14,6 +14,7 @@ class Client extends GuzzleClient
         $description = ServiceDescription::factory($descriptionPath);
         $client->setDescription($description);
         $client->setBaseUrl($description->getData('base_url'));
+        $client->addSubscriber(new Session);
 
         return $client;
     }
