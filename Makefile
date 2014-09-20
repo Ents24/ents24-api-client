@@ -9,6 +9,6 @@ phpunit: vendor
 	./vendor/bin/phpunit
 
 vendor:
-	php composer.phar install --dev
+	composer install --dev
 
 .PHONY: build default phpcs phpunit
