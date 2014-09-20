@@ -1,0 +1,7 @@
+{
+    "name": "Ents24 API Client",
+    "base_url": "http://api.ents24.com",
+
+    "includes": [
+    ]
+}
