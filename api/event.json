@@ -1,0 +1,176 @@
+{
+  "operations": {
+
+    "ListGenres": {
+      "httpMethod": "GET",
+      "uri": "event/genres",
+      "summary": "A list of all valid event genres."
+    },
+
+    "ListEvents": {
+      "httpMethod": "GET",
+      "uri": "event/list",
+      "summary": "Multiple event objects with selected fields.",
+      "parameters": {
+        "location": {
+          "description": "The location of events you want a listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "genre": {
+          "description": "The genre of event type you want listed.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "date": {
+          "description": "A specific date you want an events listing for. NB: This parameter is disregarded if date_from and date_to parameters are set in the same request.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "date_from": {
+          "description": "The date you want an events listing from. NB: This parameter is required when date_to parameter is set.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "date_to": {
+          "description": "The date you want an events listing to. NB: This parameter is required when date_from parameter is set.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "venue": {
+          "description": "The venue you want an events listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "venue_id": {
+          "description": "The unique identifier for a venue you want an events listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "artist": {
+          "description": "The artist you want an events listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "artist_id": {
+          "description": "The unique identifier for an artist you want an events listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "100"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_image": {
+          "description": "Decides whether or not an event image is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive events that have been added/updated since the given date.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+
+    "GetEvent": {
+      "httpMethod": "GET",
+      "uri": "event/read",
+      "summary": "An event object with all fields.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Event you want full details for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "incl_artists": {
+          "description": "Decides whether or not a list of performing artists is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_images": {
+          "description": "Decides whether or not an event images are included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_tickets": {
+          "description": "Decides whether or not a list of available tickets is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+
+    "GetEventImage": {
+      "httpMethod": "GET",
+      "uri": "event/image",
+      "summary": "An event image retrieved as either a JSON object or JPEG image.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Event you want an image for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "size": {
+          "description": "Size of image you want",
+          "enum": ["small", "medium", "large"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "format": {
+          "description": "The format of the response you want back from the resource",
+          "enum": ["jpeg", "json"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    }
+
+  }
+}

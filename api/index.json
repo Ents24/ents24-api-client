@@ -4,6 +4,7 @@
 
     "includes": [
       "artist.json",
-      "auth.json"
+      "auth.json",
+      "event.json"
     ]
 }

@@ -100,7 +100,7 @@
       "summary": "An artist image retrieved as either a JSON object or JPEG image.",
       "parameters": {
         "id": {
-          "description": "Unique identifier string of the Event you want an image for.",
+          "description": "Unique identifier string of the artist you want an image for.",
           "type": "string",
           "location": "query",
           "required": true
