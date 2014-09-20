@@ -20,15 +20,9 @@ class SessionTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->client = Client::factory(
-            [
-                'client_id'     => 'id1',
-                'client_secret' => 'secret1',
-            ]
-        );
+        $this->client = m::mock('Ents24\Api\Client');
         $this->event = new Event;
-        $this->session = new Session('id2', 'secret2');
-        $this->client->addSubscriber($this->session);
+        $this->session = new Session($this->client);
         $this->event['request'] = new Request(null, null, []);
         $this->event['response'] = new Response(null);
     }

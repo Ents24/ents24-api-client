@@ -6,8 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Session implements EventSubscriberInterface
 {
-    private $clientId;
-    private $clientSecret;
+    private $client;
     private $accessToken;
 
     public static function getSubscribedEvents()
@@ -15,10 +14,9 @@ class Session implements EventSubscriberInterface
         return ['request.before_send' => ['onRequestBeforeSend', 255]];
     }
 
-    public function __construct($clientId, $clientSecret)
+    public function __construct($client)
     {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
+        $this->client = $client;
     }
 
     public function setAccessToken($accessToken)
