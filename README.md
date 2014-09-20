@@ -4,7 +4,15 @@ Ents24 API Client
 [![Build Status](https://travis-ci.org/hnrysmth/ents24-api-client.svg?branch=master)](https://travis-ci.org/hnrysmth/ents24-api-client)
 [![Code Climate](https://codeclimate.com/github/hnrysmth/ents24-api-client/badges/gpa.svg)](https://codeclimate.com/github/hnrysmth/ents24-api-client)
 
-This is a PHP client for [Ents24's API](http://docs.api.ents24.com/).
+This is a PHP client for [Ents24's API](http://docs.api.ents24.com/). It's built
+on the [Guzzle client framework](http://docs.guzzlephp.org/en/latest/), which
+means it plays nice with [Service Docs](http://service-docs.adeslade.co.uk/).
+
+Requirements
+------------
+
+* PHP 5.4 or above
+* [Composer](https://getcomposer.org/)
 
 Installation
 ------------
