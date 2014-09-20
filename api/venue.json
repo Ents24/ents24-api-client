@@ -1,0 +1,127 @@
+{
+  "operations": {
+
+    "ListVenues": {
+      "httpMethod": "GET",
+      "uri": "venue/list",
+      "summary": "Multiple venue objects with selected fields.",
+      "parameters": {
+        "name": {
+          "description": "The name of a venue.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "location": {
+          "description": "The location of venue(s) you want a listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "100"],
+          "type": "integer",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_image": {
+          "description": "Decides whether or not a venue image is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive venues that have been added/updated since the given date.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+
+    "GetVenue": {
+      "httpMethod": "GET",
+      "uri": "venue/read",
+      "summary": "A venue object with all fields.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Venue you want full details for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "incl_events": {
+          "description": "Decides whether or not a list of events at this venue at is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_images": {
+          "description": "Decides whether or not an venue images are included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "incl_tickets": {
+          "description": "Decides whether or not a list of available tickets is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "enum": ["0", "1"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+
+    "GetVenueImage": {
+      "httpMethod": "GET",
+      "uri": "venue/image",
+      "summary": "A venue image retrieved as either a JSON object or JPEG image.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Venue you want an image for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "size": {
+          "description": "Size of image you want",
+          "enum": ["small", "medium", "large"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "format": {
+          "description": "The format of the response you want back from the resource",
+          "enum": ["jpeg", "json"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    }
+
+  }
+}
