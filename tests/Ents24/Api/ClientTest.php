@@ -13,7 +13,12 @@ class ClientTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->client = Client::factory();
+        $this->client = Client::factory(
+            [
+                'client_id'     => 'id1',
+                'client_secret' => 'secret1',
+            ]
+        );
     }
 
     /**

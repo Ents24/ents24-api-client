@@ -20,9 +20,15 @@ class SessionTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->client = Client::factory();
+        $this->client = Client::factory(
+            [
+                'client_id'     => 'id1',
+                'client_secret' => 'secret1',
+            ]
+        );
         $this->event = new Event;
-        $this->session = new Session;
+        $this->session = new Session('id2', 'secret2');
+        $this->client->addSubscriber($this->session);
         $this->event['request'] = new Request(null, null, []);
         $this->event['response'] = new Response(null);
     }
