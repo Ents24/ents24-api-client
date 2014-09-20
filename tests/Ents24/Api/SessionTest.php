@@ -20,7 +20,13 @@ class SessionTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->client = m::mock('Ents24\Api\Client');
+        $this->client = m::mock(
+            'Ents24\Api\Client',
+            [
+                'getId' => 'id1',
+                'getSecret' => 'secret1',
+            ]
+        );
         $this->event = new Event;
         $this->session = new Session($this->client);
         $this->event['request'] = new Request(null, null, []);
@@ -36,6 +42,35 @@ class SessionTest extends PHPUnit_Framework_TestCase
         $this->session->onRequestBeforeSend($this->event);
         $this->assertEquals(
             'qwertyuiop',
+            $this->event['request']->getHeader('Authorization')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function fetchesAccessTokenIfAbsent()
+    {
+        $tokenRequest = m::mock('Guzzle\Service\Command\OperationCommand');
+
+        $this->client
+            ->shouldReceive('getCommand')
+            ->with(
+                'RequestAccessToken',
+                [
+                    'client_id'     => 'id1',
+                    'client_secret' => 'secret1',
+                ]
+            )
+            ->andReturn($tokenRequest);
+
+        $tokenRequest
+            ->shouldReceive('execute')
+            ->andReturn(['access_token' => 'asdfghjkl']);
+
+        $this->session->onRequestBeforeSend($this->event);
+        $this->assertEquals(
+            'asdfghjkl',
             $this->event['request']->getHeader('Authorization')
         );
     }
