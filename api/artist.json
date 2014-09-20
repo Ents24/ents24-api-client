@@ -1,6 +1,14 @@
 {
   "operations": {
 
+    "ListArtists": {
+      "httpMethod": "GET",
+      "uri": "artist/list",
+      "summary": "Multiple artist objects with selected fields.",
+      "parameters": {
+      }
+    },
+
     "GetArtist": {
       "httpMethod": "GET",
       "uri": "artist/read",
