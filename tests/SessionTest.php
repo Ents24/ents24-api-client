@@ -74,4 +74,19 @@ class SessionTest extends PHPUnit_Framework_TestCase
             $this->event['request']->getHeader('Authorization')
         );
     }
+
+    /**
+     * @test
+     */
+    public function doesntFetchAccessTokenForAccessTokenRequest()
+    {
+        $this->event['request']->setPath('/auth/token');
+
+        $this->client
+            ->shouldReceive('getCommand')
+            ->with('RequestAccessToken', m::any())
+            ->times(0);
+
+        $this->session->onRequestBeforeSend($this->event);
+    }
 }
