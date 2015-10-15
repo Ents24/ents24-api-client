@@ -1,6 +1,6 @@
 {
 
-  "name": "hnrysmth/ents24-api-client",
+  "name": "Ents24/ents24-api-client",
   "description": "API Client For Ents24",
   "keywords": [
     "ents24",
@@ -14,6 +14,11 @@
       "name": "Henry Smith",
       "email": "henry@henrysmith.org",
       "homepage": "http://henrysmith.org"
+    },
+    {
+      "name": "Matt Adshead",
+      "email": "matt.adshead@ents24.com",
+      "homepage": "http://matt-adshead.com/"
     }
   ],
 
@@ -25,7 +30,10 @@
 
   "require": {
     "php": ">=5.4.0",
-    "guzzle/guzzle": "3.9.2",
+    "guzzle/guzzle": "3.9.2"
+  },
+    
+  "require-dev": {
     "mockery/mockery": "dev-master",
     "phpunit/phpunit": "3.7.*@dev",
     "squizlabs/php_codesniffer": "1.*"
