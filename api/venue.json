@@ -1,7 +1,7 @@
 {
   "operations": {
 
-    "ListVenues": {
+    "VenueList": {
       "httpMethod": "GET",
       "uri": "venue/list",
       "summary": "Multiple venue objects with selected fields.",
@@ -12,9 +12,65 @@
           "location": "query",
           "required": false
         },
-        "location": {
-          "description": "The location of venue(s) you want a listing for.",
+        "like" : {
+          "description": "Unique identifier string of the venue for which you want a list of similar venues.",
           "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "location": {
+          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting.",
+          "enum": ["name", "postcode", "geo"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "radius_distance": {
+          "description": "The furthest distance from the location you want events listed for.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "distance_unit": {
+          "description": "The unit of measurment that should be applied to the radius_distance value.",
+          "enum": ["mi", "km"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "postcode": {
+          "description": "The postcode of the venue(s) you want a listing for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "incl_image": {
+          "description": "Decides whether or not an venue image is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "image_size": {
+          "description": "Chooses the size of image included with each venue object if one is available.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_also_liked": {
+          "description": "Decides whether or not a list of IDs for similar venues is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive venues that have been added/updated since the given date.",
+          "type": "date",
           "location": "query",
           "required": false
         },
@@ -30,22 +86,15 @@
           "location": "query",
           "required": false
         },
-        "incl_image": {
-          "description": "Decides whether or not a venue image is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+        "order_by": {
+          "description": "Order events by the named object property.",
+          "type": "string",
           "location": "query",
           "required": false
         },
-        "full_description": {
-          "description": "Decides whether full or summarised description text is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
-          "location": "query",
-          "required": false
-        },
-        "updated_since": {
-          "description": "Only retrive venues that have been added/updated since the given date.",
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
           "type": "string",
           "location": "query",
           "required": false
@@ -53,7 +102,7 @@
       }
     },
 
-    "GetVenue": {
+    "VenueRead": {
       "httpMethod": "GET",
       "uri": "venue/read",
       "summary": "A venue object with all fields.",
@@ -66,48 +115,131 @@
         },
         "incl_events": {
           "description": "Decides whether or not a list of events at this venue at is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "incl_images": {
           "description": "Decides whether or not an venue images are included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
-        "incl_tickets": {
-          "description": "Decides whether or not a list of available tickets is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+        "incl_also_liked": {
+          "description": "Decides whether or not a list of IDs for similar venues is included in the response.",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "full_description": {
           "description": "Decides whether full or summarised description text is included in the response.",
-          "enum": ["0", "1"],
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+    
+    "VenueEvents": {
+      "httpMethod": "GET",
+      "uri": "venue/events",
+      "summary": "A list of events for a venue.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Venue you want full details for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "incl_image": {
+          "description": "Decides whether or not an event image is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "image_size": {
+          "description": "Chooses the size of image included with each venue object if one is available.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "incl_stages" : {
+          "description": "Decides whether or not a list of stages is included for any festival events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_artists" : {
+          "description": "Decides whether or not a list of performing artists is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_occurences" : {
+          "description": "Decides whether or not a list of individual event occurrences is included for any repeat events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_tickets" : {
+          "description": "Decides whether or not a list of available tickets is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive venues that have been added/updated since the given date.",
+          "type": "date",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "100"],
           "type": "integer",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "order_by": {
+          "description": "Order events by the named object property.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
+          "type": "string",
           "location": "query",
           "required": false
         }
       }
     },
 
-    "GetVenueImage": {
+    "VenueImage": {
       "httpMethod": "GET",
       "uri": "venue/image",
       "summary": "A venue image retrieved as either a JSON object or JPEG image.",
       "parameters": {
         "id": {
-          "description": "Unique identifier string of the Venue you want an image for.",
+          "description": "Unique identifier string of the venue you want an image for.",
           "type": "string",
           "location": "query",
           "required": true
         },
         "size": {
-          "description": "Size of image you want",
+          "description": "Size of image you want.",
           "enum": ["small", "medium", "large"],
           "type": "string",
           "location": "query",
@@ -115,7 +247,7 @@
         },
         "format": {
           "description": "The format of the response you want back from the resource",
-          "enum": ["jpeg", "json"],
+          "enum": ["json", "file"],
           "type": "string",
           "location": "query",
           "required": false
