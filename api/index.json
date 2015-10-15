@@ -1,11 +1,13 @@
 {
-    "name": "Ents24 API Client",
-    "base_url": "http://api.ents24.com",
+  "name": "Ents24 API Client",
+  "apiVersion": 3.3,
+  "baseUrl": "http://api.ents24.com",
+  "description": "The REST API for Ents24 Ltd.",
 
-    "includes": [
-      "artist.json",
-      "auth.json",
-      "event.json",
-      "venue.json"
-    ]
+  "includes": [
+    "artist.json",
+    "auth.json",
+    "event.json",
+    "venue.json"
+  ]
 }
