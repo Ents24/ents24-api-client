@@ -19,8 +19,7 @@
           "required": false
         },
         "location": {
-          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting.",
-          "enum": ["name", "postcode", "geo"],
+          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. (\"name:\", \"postcode:\", \"geo:\"]",
           "type": "string",
           "location": "query",
           "required": false
@@ -76,7 +75,7 @@
         },
         "results_per_page": {
           "description": "The number of results you want per page/chunk.",
-          "enum": ["25", "50", "100"],
+          "enum": ["25", "50",  "75", "100"],
           "type": "integer",
           "required": false
         },
@@ -201,7 +200,7 @@
         },
         "results_per_page": {
           "description": "The number of results you want per page/chunk.",
-          "enum": ["25", "50", "100"],
+          "enum": ["25", "50",  "75", "100"],
           "type": "integer",
           "required": false
         },

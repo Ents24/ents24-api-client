@@ -1,7 +1,7 @@
 {
   "name": "Ents24 API Client",
   "apiVersion": 3.3,
-  "baseUrl": "http://api.ents24.com",
+  "baseUrl": "https://api.ents24.com",
   "description": "The REST API for Ents24 Ltd.",
 
   "includes": [

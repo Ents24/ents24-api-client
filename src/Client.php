@@ -21,8 +21,8 @@ class Client extends GuzzleClient
         $client->setId($config['client_id']);
         $client->setSecret($config['client_secret']);
         $client->setDescription($description);
-        $client->setBaseUrl($description->getData('base_url'));
         $client->addSubscriber($session);
+        $client->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
 
         return $client;
     }
