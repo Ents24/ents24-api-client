@@ -48,7 +48,12 @@ class Client extends GuzzleClient
     }
     
     public function venueList($args) {
-        $listRequest = $this->getCommand('VenueList', $args);
-        return $listRequest->execute();
+        $request = $this->getCommand('VenueList', $args);
+        return $request->execute();
+    }
+	
+	public function venueRead($args) {
+        $request = $this->getCommand('VenueRead', $args);
+        return $request->execute();
     }
 }
