@@ -1,32 +1,63 @@
 {
   "operations": {
 
-    "ListArtists": {
+    "ArtistList": {
       "httpMethod": "GET",
       "uri": "artist/list",
       "summary": "Multiple artist objects with selected fields.",
       "parameters": {
+        "name": {
+          "description": "The string that matches artist names you want a list of.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "like": {
+          "description": "Unique identifier string of the artist for which you want a list of similar artists.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
         "genre": {
-          "description": "The genre of artist you want listed.",
+          "description": "The genre you want an artists listing for.",
           "type": "string",
           "location": "query",
           "required": false
         },
-        "event": {
-          "description": "The name for an event you want an artists listing for.",
+        "incl_image": {
+          "description": "Decides whether or not an artist image is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "image_size": {
+          "description": "Chooses the size of image included with each artist object if one is available.",
+          "enum": ["small", "medium", "large"],
           "type": "string",
           "location": "query",
           "required": false
         },
-        "event_id": {
-          "description": "The unique identifier for an event you want an artists listing for.",
-          "type": "string",
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_also_liked": {
+          "description": "Decides whether or not a list of IDs for similar artists is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive artists that have been added/updated since the given timestamp (RFC3339).",
+          "type": "date",
           "location": "query",
           "required": false
         },
         "results_per_page": {
           "description": "The number of results you want per page/chunk.",
-          "enum": ["25", "50", "100"],
+          "enum": ["25", "50", "75", "100"],
           "type": "integer",
           "location": "query",
           "required": false
@@ -37,21 +68,15 @@
           "location": "query",
           "required": false
         },
-        "incl_image": {
-          "description": "Decides whether or not an artist image is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
-          "location": "query",
-          "required": false
-        },
-        "full_description": {
-          "description": "Decides whether full or summarised description text is included in the response.",
+        "order_by": {
+          "description": "Order events by the named object property.",
           "type": "string",
           "location": "query",
           "required": false
         },
-        "updated_since": {
-          "description": "Only retrive artists that have been added/updated since the given date (YYYY-MM-DD).",
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
           "type": "string",
           "location": "query",
           "required": false
@@ -59,10 +84,10 @@
       }
     },
 
-    "GetArtist": {
+    "ArtistRead": {
       "httpMethod": "GET",
       "uri": "artist/read",
-      "summary": "Fetch data about a single artist",
+      "summary": "An artist object with all fields.",
       "parameters": {
         "id": {
           "description": "Unique identifier string of the Artist you want full details for",
@@ -70,37 +95,123 @@
           "location": "query",
           "required": true
         },
-        "incl_events": {
-          "description": "Decides whether or not a list of events the artists is performing at is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+        "incl_images": {
+          "description": "Decides whether or not an artist images are included in the response.",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
-        "incl_images": {
-          "description": "Decides whether or not an artist images are included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+        "incl_also_liked": {
+          "description": "Decides whether or not a list of IDs for similar artists is included in the response.",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "full_description": {
           "description": "Decides whether full or summarised description text is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         }
       }
     },
 
-    "GetArtistImage": {
+    "ArtistEvents": {
+      "httpMethod": "GET",
+      "uri": "artist/events",
+      "summary": "A list of events for an artist.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Artist you want an events listing for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "incl_image": {
+          "description": "Decides whether or not an event image is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "image_size": {
+          "description": "Chooses the size of image included with each event object if one is available.",
+          "enum": ["small", "medium", "large"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "incl_stages": {
+          "description": "Decides whether or not a list of stages is included for any festival events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_artists": {
+          "description": "Decides whether or not a list of performing artists is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_occurences": {
+          "description": "Decides whether or not a list of individual event occurrences is included for any repeat events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_tickets": {
+          "description": "Decides whether or not a list of available tickets is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "full_description": {
+          "description": "Decides whether full or summarised description text is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "updated_since": {
+          "description": "Only retrive events that have been added/updated since the given timestamp (RFC3339).",
+          "type": "date",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "75", "100"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "order_by": {
+          "description": "Order events by the named object property.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    },
+
+    "ArtistImage": {
       "httpMethod": "GET",
       "uri": "artist/image",
       "summary": "An artist image retrieved as either a JSON object or JPEG image.",
       "parameters": {
         "id": {
-          "description": "Unique identifier string of the artist you want an image for.",
+          "description": "Unique identifier string of the Artist you want an image for.",
           "type": "string",
           "location": "query",
           "required": true
@@ -114,7 +225,7 @@
         },
         "format": {
           "description": "The format of the response you want back from the resource",
-          "enum": ["jpeg", "json"],
+          "enum": ["json", "file"],
           "type": "string",
           "location": "query",
           "required": false
