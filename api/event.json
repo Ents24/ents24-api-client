@@ -13,7 +13,7 @@
           "required": "false"
         },
         "parent_genres_only": {
-          "description": "Decides whether or not subgenres are included in the genre list.",
+          "description": "Decides whether or not subgenres are included in the genre list. NB: This parameter is disregarded if the parent_key parameter is set in the same request.",
           "type": "boolean",
           "location": "query",
           "required": "false"
@@ -24,7 +24,8 @@
     "ListEvents": {
       "httpMethod": "GET",
       "uri": "event/list",
-      "summary": "Multiple event objects with selected fields.",
+      "summary": "Multiple event objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters:
+location, name, venue_name, venue_postcode, artist_name, ids.",
       "parameters": {
         "ids": {
           "description": "A serialised JSON array of valid IDs for events you want a list of.",
@@ -33,19 +34,19 @@
           "required": false
         },
         "location": {
-          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. (name:, postcode:, geo:).",
+          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. (name:, postcode:, geo:). NB: Values applied to this parameter with the name may be ambiguous E.G: Newcastle. Use location/search endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.",
           "type": "string",
           "location": "query",
           "required": false
         },
         "radius_distance": {
-          "description": "The furthest distance from the location you want events listed for.",
+          "description": "The furthest distance from the location you want events listed for. NB: The location parameter is required when this parameter is set.",
           "type": "integer",
           "location": "query",
           "required": false
         },
         "distance_unit": {
-          "description": "The unit of measurment that should be applied to the radius_distance value.",
+          "description": "The unit of measurment that should be applied to the radius_distance value. NB: The location parameter is required when this parameter is set.",
           "enum": ["mi", "km"],
           "type": "string",
           "location": "query",
