@@ -1,10 +1,24 @@
 {
   "operations": {
 
-    "ListGenres": {
+    "EventGenres": {
       "httpMethod": "GET",
       "uri": "event/genres",
-      "summary": "A list of all valid event genres."
+      "summary": "A list of all valid event genres.",
+      "parameters": {
+        "parent_key": {
+          "description": "The parent of genre you want a list of genres for. E.G: music, comedy or theatre-shows.",
+          "type": "string",
+          "location": "query",
+          "required": "false"
+        },
+        "parent_genres_only": {
+          "description": "Decides whether or not subgenres are included in the genre list.",
+          "type": "boolean",
+          "location": "query",
+          "required": "false"
+        }
+      }
     },
 
     "ListEvents": {
@@ -12,8 +26,27 @@
       "uri": "event/list",
       "summary": "Multiple event objects with selected fields.",
       "parameters": {
+        "ids": {
+          "description": "A serialised JSON array of valid IDs for events you want a list of.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
         "location": {
-          "description": "The location of events you want a listing for.",
+          "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. (name:, postcode:, geo:).",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "radius_distance": {
+          "description": "The furthest distance from the location you want events listed for.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "distance_unit": {
+          "description": "The unit of measurment that should be applied to the radius_distance value.",
+          "enum": ["mi", "km"],
           "type": "string",
           "location": "query",
           "required": false
@@ -24,45 +57,51 @@
           "location": "query",
           "required": false
         },
+        "genres": {
+          "description": "A serialised JSON array of genres you want events listed for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
         "date": {
           "description": "A specific date you want an events listing for. NB: This parameter is disregarded if date_from and date_to parameters are set in the same request.",
-          "type": "string",
+          "type": "date",
           "location": "query",
           "required": false
         },
         "date_from": {
           "description": "The date you want an events listing from. NB: This parameter is required when date_to parameter is set.",
-          "type": "string",
+          "type": "date",
           "location": "query",
           "required": false
         },
         "date_to": {
           "description": "The date you want an events listing to. NB: This parameter is required when date_from parameter is set.",
+          "type": "date",
+          "location": "query",
+          "required": false
+        },
+        "venue_name": {
+          "description": "The venue you want an events listing for. NB: Values applied to this parameter may match more than one venue! You should use the venue/read end-point to get event listings for a particular venue.",
           "type": "string",
           "location": "query",
           "required": false
         },
-        "venue": {
-          "description": "The venue you want an events listing for.",
+        "venue_postcode": {
+          "description": "The postcode of the venue you want an events listing for. NB: This parameter will only produce a list of events for venues with the exact postcode given. Values applied to this parameter may match more than one venue! You should use the venue/read end-point to get event listings for a particular venue.",
           "type": "string",
           "location": "query",
           "required": false
         },
-        "venue_id": {
-          "description": "The unique identifier for a venue you want an events listing for.",
+        "artist_name": {
+          "description": "The artist you want an events listing for. NB: Values applied to this parameter may match more than one artist! You should use the artist/read end-point to get an upcoming events list for a particular artist.",
           "type": "string",
           "location": "query",
           "required": false
         },
-        "artist": {
-          "description": "The artist you want an events listing for.",
-          "type": "string",
-          "location": "query",
-          "required": false
-        },
-        "artist_id": {
-          "description": "The unique identifier for an artist you want an events listing for.",
-          "type": "string",
+        "incl_image": {
+          "description": "Decides whether or not an event image is included in the response.",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
@@ -86,15 +125,71 @@
           "location": "query",
           "required": false
         },
+        "image_size": {
+          "description": "Chooses the size of image included with each image object if one is available.",
+          "enum": ["small", "medium", "large"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "incl_stages": {
+          "description": "Decides whether or not a list of stages is included for any festival events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_artists": {
+          "description": "Decides whether or not a list of performing artists is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_occurrences": {
+          "description": "Decides whether or not a list of individual event occurrences is included for any repeat events in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_tickets": {
+          "description": "Decides whether or not a list of available tickets is included in the response.",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
         "full_description": {
           "description": "Decides whether full or summarised description text is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "updated_since": {
-          "description": "Only retrive events that have been added/updated since the given date.",
+          "description": "Only retrive events that have been added/updated since the given timestamp (RFC3339).",
+          "type": "date",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "75", "100"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "order_by": {
+          "description": "Order events by the named object property.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
           "type": "string",
           "location": "query",
           "required": false
@@ -102,7 +197,7 @@
       }
     },
 
-    "GetEvent": {
+    "EventRead": {
       "httpMethod": "GET",
       "uri": "event/read",
       "summary": "An event object with all fields.",
@@ -115,29 +210,31 @@
         },
         "incl_artists": {
           "description": "Decides whether or not a list of performing artists is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "incl_images": {
           "description": "Decides whether or not an event images are included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "incl_tickets": {
           "description": "Decides whether or not a list of available tickets is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
+          "location": "query",
+          "required": false
+        },
+        "incl_occurrences": {
+          "description": "Decides whether or not a list of individual event occurrences is included in the response.",
+          "type": "boolean",
           "location": "query",
           "required": false
         },
         "full_description": {
           "description": "Decides whether full or summarised description text is included in the response.",
-          "enum": ["0", "1"],
-          "type": "integer",
+          "type": "boolean",
           "location": "query",
           "required": false
         }
@@ -156,15 +253,15 @@
           "required": true
         },
         "size": {
-          "description": "Size of image you want",
+          "description": "Size of image you want.",
           "enum": ["small", "medium", "large"],
           "type": "string",
           "location": "query",
           "required": false
         },
         "format": {
-          "description": "The format of the response you want back from the resource",
-          "enum": ["jpeg", "json"],
+          "description": "The format of the response you want back from the resource.",
+          "enum": ["json", "file"],
           "type": "string",
           "location": "query",
           "required": false
