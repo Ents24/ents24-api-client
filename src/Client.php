@@ -46,6 +46,24 @@ class Client extends GuzzleClient
     {
         return $this->secret;
     }
+
+    public function requestAccessToken() {
+        if($this->id && $this->secret) {
+            $request = $this->postCommand('RequestAccessToken',
+                [
+                    $this->id,
+                    $this->secret
+                ]
+            );
+            $response = $request->execute();
+            $this->accessToken = $response['access_token'];
+        } else {
+            throw new InvalidArgumentException(
+                "No client ID and/or secret found.
+                 Please set the client's credentials before authenticating."
+            );
+        }
+    }
     
     public function venueList($args) {
         $request = $this->getCommand('VenueList', $args);
@@ -54,6 +72,76 @@ class Client extends GuzzleClient
 	
 	public function venueRead($args) {
         $request = $this->getCommand('VenueRead', $args);
+        return $request->execute();
+    }
+
+    public function venueEvents($args) {
+        $request = $this->getCommand('VenueEvents', $args);
+        return $request->execute();
+    }
+
+    public function venueImage($args) {
+        $request = $this->getCommand('VenueImage', $args);
+        return $request->execute();
+    }
+
+    public function artistList($args) {
+        $request = $this->getCommand('ArtistList', $args);
+        return $request->execute();
+    }
+    
+    public function artistRead($args) {
+        $request = $this->getCommand('ArtistRead', $args);
+        return $request->execute();
+    }
+
+    public function artistEvents($args) {
+        $request = $this->getCommand('ArtistEvents', $args);
+        return $request->execute();
+    }
+
+    public function artistImage($args) {
+        $request = $this->getCommand('ArtistImage', $args);
+        return $request->execute();
+    }
+
+    public function eventList($args) {
+        $request = $this->getCommand('EventList', $args);
+        return $request->execute();
+    }
+    
+    public function eventRead($args) {
+        $request = $this->getCommand('EventRead', $args);
+        return $request->execute();
+    }
+
+    public function eventGenres($args) {
+        $request = $this->getCommand('EventGenres', $args);
+        return $request->execute();
+    }
+
+    public function eventImage($args) {
+        $request = $this->getCommand('EventImage', $args);
+        return $request->execute();
+    }
+
+    public function venueList($args) {
+        $request = $this->getCommand('VenueList', $args);
+        return $request->execute();
+    }
+    
+    public function venueRead($args) {
+        $request = $this->getCommand('VenueRead', $args);
+        return $request->execute();
+    }
+
+    public function venueGenres($args) {
+        $request = $this->getCommand('VenueEvents', $args);
+        return $request->execute();
+    }
+
+    public function venueImage($args) {
+        $request = $this->getCommand('VenueImage', $args);
         return $request->execute();
     }
 }
