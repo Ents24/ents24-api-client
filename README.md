@@ -21,8 +21,21 @@ Add the following to the `require` section of your project's `composer.json`.
 
     "Ents24/ents24-api-client": "dev-master"
 
+Add the folowing to the `repositories` section of your project's `composer.json`.
+
+    {
+      "type": "vcs",
+      "url":  "https://www.github.com/Ents24/ents24-api-client.git"
+    }
+
+Run `composer install`.
+
 Usage
 -----
+
+You need client ID and secret keys for the Ents24 API in order to make requests. You can get these here: https://ents24.com/developer.
+
+Once you have credentials build a client instance using the factory and pass the credentials to it.
 
 This short example code loads a list of artists and prints the first result to
 stdout.
