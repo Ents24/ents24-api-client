@@ -8,9 +8,6 @@ This is a PHP client for [Ents24's API](http://docs.api.ents24.com/). It's built
 on the [Guzzle client framework](http://docs.guzzlephp.org/en/latest/), which
 means it plays nice with [Service Docs](http://service-docs.adeslade.co.uk/).
 
-**N.B.**<br />
-_This project has been asleep for a long time and is now out of date with the current API spec. This fork is an ongoing process starting now to bring it back up to date with the current spec (3.3 at the time of writing)._
-
 Requirements
 ------------
 
