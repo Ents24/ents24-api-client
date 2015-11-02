@@ -1,0 +1,69 @@
+{
+  "operations": {
+
+    "LocationSearch": {
+      "httpMethod": "GET",
+      "uri": "location/search",
+      "summary": "Check location parameter values for use in event or venue list by location requests.",
+      "parameters": {
+        "name": {
+          "description": "The name of the location your searching for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "postcode": {
+          "description": "The postcode of the location your searching for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "geo": {
+          "description": "Comma separated latitude and longitude of the location your searching for.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "radius_distance": {
+          "description": "The furthest distance from the given location that should be searched.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "distance_unit": {
+          "description": "The unit of measurment that should be applied to the radius_distance value.",
+          "enum": ["mi", "km"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "results_per_page": {
+          "description": "The number of results you want per page/chunk.",
+          "enum": ["25", "50", "75", "100"],
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "page": {
+          "description": "The page/chunk of results to be requested.",
+          "type": "integer",
+          "location": "query",
+          "required": false
+        },
+        "order_by": {
+          "description": "Order events by the named object property.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },
+        "order_direction": {
+          "description": "Ordering direction.",
+          "enum": ["asc", "desc"],
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    }
+  }
+}

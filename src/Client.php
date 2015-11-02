@@ -171,4 +171,9 @@ class Client extends GuzzleClient
         $request = $this->getCommand('UserTrackingUpdate', $args);
         return $request->execute();
     }
+
+    public function locationSearch($args) {
+        $request = $this->getCommand('LocationSearch', $args);
+        return $request->execute();
+    }
 }
