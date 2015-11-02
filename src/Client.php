@@ -8,6 +8,7 @@ class Client extends GuzzleClient
 {
     private $id;
     private $secret;
+    private $session;
 
     public static function factory($config = [])
     {
@@ -16,15 +17,21 @@ class Client extends GuzzleClient
         $descriptionPath = realpath(__DIR__ . '/../api/index.json');
         $description = ServiceDescription::factory($descriptionPath);
 
-        $session = new Session($client);
-
+        $client->setSession(new Session($client));
         $client->setId($config['client_id']);
         $client->setSecret($config['client_secret']);
         $client->setDescription($description);
-        $client->addSubscriber($session);
-        $client->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        $client->addSubscriber($client->getSession());
 
         return $client;
+    }
+
+    public function setSession($session) {
+        $this->session = $session;
+    }
+
+    public function getSession() {
+        return $this->session;
     }
 
     public function setId($id)
@@ -49,14 +56,14 @@ class Client extends GuzzleClient
 
     public function clientRequestAccessToken() {
         if($this->id && $this->secret) {
-            $request = $this->postCommand('ClientRequestAccessToken',
+            $request = $this->getCommand('ClientRequestAccessToken',
                 [
-                    $this->id,
-                    $this->secret
+                    'client_id' => $this->id,
+                    'client_secret' => $this->secret
                 ]
             );
             $response = $request->execute();
-            $this->accessToken = $response['access_token'];
+            $this->session->setAccessToken($response['access_token']);
         } else {
             throw new InvalidArgumentException(
                 "No client ID and/or secret found.
@@ -67,16 +74,16 @@ class Client extends GuzzleClient
 
     public function userRequestAccessToken($username, $password) {
         if($this->id && $this->secret) {
-            $request = $this->postCommand('UserRequestAccessToken',
+            $request = $this->getCommand('UserRequestAccessToken',
                 [
-                    $this->id,
-                    $this->secret,
-                    $username,
-                    $password
+                    'client_id' => $this->id,
+                    'client_secret' => $this->secret,
+                    'username' => $username,
+                    'password' => $password
                 ]
             );
             $response = $request->execute();
-            $this->accessToken = $response['access_token'];
+            $this->session->setAccessToken($response['access_token']);
         } else {
             throw new InvalidArgumentException(
                 "No client ID and/or secret found.
@@ -145,26 +152,6 @@ class Client extends GuzzleClient
         return $request->execute();
     }
 
-    public function venueList($args) {
-        $request = $this->getCommand('VenueList', $args);
-        return $request->execute();
-    }
-    
-    public function venueRead($args) {
-        $request = $this->getCommand('VenueRead', $args);
-        return $request->execute();
-    }
-
-    public function venueGenres($args) {
-        $request = $this->getCommand('VenueEvents', $args);
-        return $request->execute();
-    }
-
-    public function venueImage($args) {
-        $request = $this->getCommand('VenueImage', $args);
-        return $request->execute();
-    }
-
     public function userTrackedArtists() {
         $request = $this->getCommand('UserTrackedArtists');
         return $request->execute();
@@ -181,7 +168,7 @@ class Client extends GuzzleClient
     }
 
     public function userTrackingUpdate($args) {
-        $request = $this->postCommand('UserTrackingUpdate', $args);
+        $request = $this->getCommand('UserTrackingUpdate', $args);
         return $request->execute();
     }
 }

@@ -7,8 +7,7 @@
       "summary": "Multiple artist objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters: name, like.",
       "parameters": {
         "name": {
-          "description": "The string that matches artist names you want a list of. NB: Values applied to this parameter may match more than one artist!
-You should use the artist/read end-point to retrieve data for a particular artist.",
+          "description": "The string that matches artist names you want a list of. NB: Values applied to this parameter may match more than one artist! You should use the artist/read end-point to retrieve data for a particular artist.",
           "type": "string",
           "location": "query",
           "required": false
@@ -233,6 +232,5 @@ You should use the artist/read end-point to retrieve data for a particular artis
         }
       }
     }
-
   }
 }

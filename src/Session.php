@@ -28,7 +28,7 @@ class Session implements EventSubscriberInterface
     {
         $request = $event['request'];
 
-        if ($this->accessToken === null) {
+        if ($this->accessToken === null && !preg_match('#^/auth/token#', $request->getPath())) {
             $tokenRequest = $this->client->clientRequestAccessToken();
         }
 

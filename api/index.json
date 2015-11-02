@@ -8,6 +8,7 @@
     "artist.json",
     "auth.json",
     "event.json",
-    "venue.json"
+    "venue.json",
+    "user.json"
   ]
 }
