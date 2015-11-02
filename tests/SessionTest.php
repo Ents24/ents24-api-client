@@ -56,7 +56,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
         $this->client
             ->shouldReceive('getCommand')
             ->with(
-                'RequestAccessToken',
+                'ClientRequestAccessToken',
                 [
                     'client_id'     => 'id1',
                     'client_secret' => 'secret1',
@@ -84,7 +84,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
         $this->client
             ->shouldReceive('getCommand')
-            ->with('RequestAccessToken', m::any())
+            ->with('ClientRequestAccessToken', m::any())
             ->times(0);
 
         $this->session->onRequestBeforeSend($this->event);

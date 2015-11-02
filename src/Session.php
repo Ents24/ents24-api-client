@@ -29,7 +29,7 @@ class Session implements EventSubscriberInterface
         $request = $event['request'];
 
         if ($this->accessToken === null) {
-            $tokenRequest = $this->client->requestAccessToken();
+            $tokenRequest = $this->client->clientRequestAccessToken();
         }
 
         $request->setHeader('Authorization', $this->accessToken);

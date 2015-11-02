@@ -4,8 +4,7 @@
     "VenueList": {
       "httpMethod": "GET",
       "uri": "venue/list",
-      "summary": "Multiple venue objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters:
-name, like, location, postcode.",
+      "summary": "Multiple venue objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters: name, like, location, postcode.",
       "parameters": {
         "name": {
           "description": "The name of a venue.",

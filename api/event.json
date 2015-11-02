@@ -24,8 +24,7 @@
     "ListEvents": {
       "httpMethod": "GET",
       "uri": "event/list",
-      "summary": "Multiple event objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters:
-location, name, venue_name, venue_postcode, artist_name, ids.",
+      "summary": "Multiple event objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters: location, name, venue_name, venue_postcode, artist_name, ids.",
       "parameters": {
         "ids": {
           "description": "A serialised JSON array of valid IDs for events you want a list of.",

@@ -47,12 +47,32 @@ class Client extends GuzzleClient
         return $this->secret;
     }
 
-    public function requestAccessToken() {
+    public function clientRequestAccessToken() {
         if($this->id && $this->secret) {
-            $request = $this->postCommand('RequestAccessToken',
+            $request = $this->postCommand('ClientRequestAccessToken',
                 [
                     $this->id,
                     $this->secret
+                ]
+            );
+            $response = $request->execute();
+            $this->accessToken = $response['access_token'];
+        } else {
+            throw new InvalidArgumentException(
+                "No client ID and/or secret found.
+                 Please set the client's credentials before authenticating."
+            );
+        }
+    }
+
+    public function userRequestAccessToken($username, $password) {
+        if($this->id && $this->secret) {
+            $request = $this->postCommand('UserRequestAccessToken',
+                [
+                    $this->id,
+                    $this->secret,
+                    $username,
+                    $password
                 ]
             );
             $response = $request->execute();
@@ -142,6 +162,26 @@ class Client extends GuzzleClient
 
     public function venueImage($args) {
         $request = $this->getCommand('VenueImage', $args);
+        return $request->execute();
+    }
+
+    public function userTrackedArtists() {
+        $request = $this->getCommand('UserTrackedArtists');
+        return $request->execute();
+    }
+
+    public function userTrackedEvents() {
+        $request = $this->getCommand('UserTrackedEvents');
+        return $request->execute();
+    }
+
+    public function userTrackedVenues() {
+        $request = $this->getCommand('UserTrackedVenues');
+        return $request->execute();
+    }
+
+    public function userTrackingUpdate($args) {
+        $request = $this->postCommand('UserTrackingUpdate', $args);
         return $request->execute();
     }
 }
