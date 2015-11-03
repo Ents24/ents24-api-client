@@ -64,6 +64,7 @@ class Client extends GuzzleClient
             );
             $response = $request->execute();
             $this->session->setAccessToken($response['access_token']);
+            return $response;
         } else {
             throw new InvalidArgumentException(
                 "No client ID and/or secret found.
@@ -84,6 +85,7 @@ class Client extends GuzzleClient
             );
             $response = $request->execute();
             $this->session->setAccessToken($response['access_token']);
+            return $response;
         } else {
             throw new InvalidArgumentException(
                 "No client ID and/or secret found.
