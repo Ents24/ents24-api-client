@@ -30,13 +30,13 @@
         "lastSyncDate": {
           "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
           "type": "string",
-          "location": "postField",
+          "location": "json",
           "required": true
         },
         "artists": {
           "description": "Tracked artists.",
           "type": "array",
-          "location": "postField",
+          "location": "json",
           "items": { 
             "type": "object",
             "properties": {
@@ -48,15 +48,14 @@
                 "description": "RFC-3339 formatted timestamp for when this artist was tracked by the user.",
                 "type": "string"
               }
-            },
-            "required": ["id","subscribed"]
+            }
           },
           "required": true
         },
         "venues": {
           "description": "Tracked venues.",
           "type": "array",
-          "location": "postField",
+          "location": "json",
           "items": { 
             "type": "object",
             "properties": {
@@ -68,15 +67,14 @@
                 "description": "RFC-3339 formatted timestamp for when this venue was tracked by the user.",
                 "type": "string"
               }
-            },
-            "required": ["id","subscribed"]
+            }
           },
           "required": true
         },
         "events": {
           "description": "Tracked events.",
           "type": "array",
-          "location": "postField",
+          "location": "json",
           "items": { 
             "type": "object",
             "properties": {
@@ -88,8 +86,7 @@
                 "description": "RFC-3339 formatted timestamp for when this event was tracked by the user",
                 "type": "string"
               }
-            },
-            "required": ["id","subscribed"]
+            }
           },
           "required": true
         }
