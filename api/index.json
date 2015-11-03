@@ -9,6 +9,7 @@
     "auth.json",
     "event.json",
     "venue.json",
-    "user.json"
+    "user.json",
+    "location.json"
   ]
 }
