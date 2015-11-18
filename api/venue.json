@@ -252,7 +252,26 @@
           "required": false
         }
       }
-    }
+    },
 
+    "VenueWidget": {
+      "httpMethod": "GET",
+      "uri": "venue/widget",
+      "summary": "Return widget data for venue based event listings.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Venue you want widget data for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "encode": {
+          "description": "The character encoding for the data response.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
+    }
   }
 }

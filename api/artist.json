@@ -231,6 +231,26 @@
           "required": false
         }
       }
+    },
+
+    "ArtistWidget": {
+      "httpMethod": "GET",
+      "uri": "artist/widget",
+      "summary": "Return widget data for artist based event listings.",
+      "parameters": {
+        "id": {
+          "description": "Unique identifier string of the Artist you want widget data for.",
+          "type": "string",
+          "location": "query",
+          "required": true
+        },
+        "encode": {
+          "description": "The character encoding for the data response.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        }
+      }
     }
   }
 }

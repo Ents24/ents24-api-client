@@ -113,6 +113,11 @@ class Client extends GuzzleClient
         $request = $this->getCommand('VenueImage', $args);
         return $request->execute();
     }
+    
+    public function venueWidget($args) {
+        $request = $this->getCommand('VenueWidget', $args);
+        return $request->execute();
+    }
 
     public function artistList($args) {
         $request = $this->getCommand('ArtistList', $args);
@@ -131,6 +136,11 @@ class Client extends GuzzleClient
 
     public function artistImage($args) {
         $request = $this->getCommand('ArtistImage', $args);
+        return $request->execute();
+    }
+    
+    public function artistWidget($args) {
+        $request = $this->getCommand('ArtistWidget', $args);
         return $request->execute();
     }
 
@@ -176,6 +186,11 @@ class Client extends GuzzleClient
 
     public function locationSearch($args) {
         $request = $this->getCommand('LocationSearch', $args);
+        return $request->execute();
+    }
+
+    public function locationWidget($args) {
+        $request = $this->getCommand('LocationWidget', $args);
         return $request->execute();
     }
 }
