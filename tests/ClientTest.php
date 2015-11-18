@@ -37,4 +37,9 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $description = $this->client->getDescription();
         $this->assertEquals("Ents24 API Client", $description->getName());
     }
+
+    public function artistRead() {
+        $response = $client->artistRead(['id' => '7992']);
+        $this->assertEquals("Jimmy Carr", $response['name']);
+    }
 }
