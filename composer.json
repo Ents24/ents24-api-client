@@ -29,13 +29,13 @@
   },
 
   "require": {
-    "php": "5.*",
-    "guzzle/guzzle": "3.*"
+    "php": ">=5.4.0",
+    "guzzle/guzzle": "3.9.2"
   },
     
   "require-dev": {
-    "mockery/mockery": "dev-master",
-    "phpunit/phpunit": "5.*"
+    "mockery/mockery": "0.9.4",
+    "phpunit/phpunit": "4.8.18"
   }
 
 }

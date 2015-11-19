@@ -4,8 +4,14 @@
     stopOnError="true">
 
     <testsuites>
-        <testsuite name="tests">
-            <directory>tests</directory>
+        <testsuite name="core">
+            <directory>tests/core</directory>
+        </testsuite>
+        <testsuite name="endpoints">
+            <directory>tests/endpoints</directory>
+        </testsuite>
+        <testsuite name="artist_endpoints">
+            <directory>tests/endpoints/artist</directory>
         </testsuite>
     </testsuites>
 

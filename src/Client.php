@@ -3,15 +3,18 @@ namespace Ents24\Api;
 
 use Guzzle\Service\Client as GuzzleClient;
 use Guzzle\Service\Description\ServiceDescription;
+use Guzzle\Common\Event;
 
 class Client extends GuzzleClient
 {
     private $id;
     private $secret;
     private $session;
+    private $description;
 
     public static function factory($config = [])
     {
+        $config['request.options'] = ['exceptions' => false];
         $client = parent::factory($config);
 
         $descriptionPath = realpath(__DIR__ . '/../api/index.json');
@@ -39,14 +42,14 @@ class Client extends GuzzleClient
         $this->id = $id;
     }
 
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-    }
-
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
     }
 
     public function getSecret()
@@ -93,12 +96,12 @@ class Client extends GuzzleClient
             );
         }
     }
-    
+
     public function venueList($args) {
         $request = $this->getCommand('VenueList', $args);
         return $request->execute();
     }
-	
+
 	public function venueRead($args) {
         $request = $this->getCommand('VenueRead', $args);
         return $request->execute();
@@ -113,7 +116,7 @@ class Client extends GuzzleClient
         $request = $this->getCommand('VenueImage', $args);
         return $request->execute();
     }
-    
+
     public function venueWidget($args) {
         $request = $this->getCommand('VenueWidget', $args);
         return $request->execute();
@@ -123,7 +126,7 @@ class Client extends GuzzleClient
         $request = $this->getCommand('ArtistList', $args);
         return $request->execute();
     }
-    
+
     public function artistRead($args) {
         $request = $this->getCommand('ArtistRead', $args);
         return $request->execute();
@@ -138,7 +141,7 @@ class Client extends GuzzleClient
         $request = $this->getCommand('ArtistImage', $args);
         return $request->execute();
     }
-    
+
     public function artistWidget($args) {
         $request = $this->getCommand('ArtistWidget', $args);
         return $request->execute();
@@ -148,7 +151,7 @@ class Client extends GuzzleClient
         $request = $this->getCommand('EventList', $args);
         return $request->execute();
     }
-    
+
     public function eventRead($args) {
         $request = $this->getCommand('EventRead', $args);
         return $request->execute();
