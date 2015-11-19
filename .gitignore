@@ -1,5 +1,3 @@
 tmp/
 vendor/
-tests/
-phpunit.xml
-composer.lock
+test_credentials.txt
