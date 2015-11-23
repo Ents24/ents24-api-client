@@ -43,9 +43,7 @@ class ArtistReadEPTest extends PHPUnit_Framework_TestCase
         if($response instanceof Response) {
             $this->assertTrue((!$response->getStatusCode() == "404") && (!$response->getStatusCode() == "400"));
         } else {
-            if(array_key_exists("errors", $response)) {
-                $this->assertEmpty($response["errors"]);
-            }
+            $this->assertTrue(empty($response["errors"]) || !arrayHasKey($response, "errors"));
         }
     }
 
@@ -54,6 +52,35 @@ class ArtistReadEPTest extends PHPUnit_Framework_TestCase
      */
     public function minParams() {
         $response = $this->client->artistRead(["id" => "KoO4"]);
-        $this->assertEquals("Jimmy Carr", $response["name"]);
+        $this->assertArrayHasKey("id", $response);
+    }
+
+    /**
+     * @test
+     */
+    public function icludeImages() {
+        $response = $this->client->artistRead(["id" => "KoO4", "incl_images" => false]);
+        $this->assertArrayNotHasKey("images", $response);
+    }
+
+    /**
+     * @test
+     */
+    public function icludeAlsoLiked() {
+        $response = $this->client->artistRead(["id" => "KoO4", "incl_also_liked" => true]);
+        $this->assertArrayHasKey("fansAlsoLiked", $response);
+    }
+
+    /**
+     * @test
+     */
+    public function fullDescription() {
+        $response = $this->client->artistRead(["id" => "KoO4", "full_description" => false]);
+        $short_desc = $response["description"];
+
+        $response = $this->client->artistRead(["id" => "KoO4", "full_description" => true]);
+        $full_desc = $response["description"];
+
+        $this->assertGreaterThan(strlen($short_desc), strlen($full_desc));
     }
 }
