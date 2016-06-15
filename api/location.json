@@ -69,7 +69,7 @@
     "LocationWidget": {
       "httpMethod": "GET",
       "uri": "location/widget",
-      "summary": "Return widget data for location based event listings.",
+      "summary": "Return metadata for a location based event widget. This metadata contains JSON Link Data, location data and a URL for the corresponding hub page on Ents24. It does not include the actual paged event data, which must be requested seperately from the location/widget-page endpoint.",
       "parameters": {
         "location": {
           "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting [name:, postcode:, geo:]. NB: Values applied to this parameter with the name may be ambiguous E.G: Newcastle. Use location/search endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.",
@@ -101,20 +101,59 @@
           "type": "string",
           "location": "query",
           "required": false
-        },
-        "results_per_page": {
-          "description": "The number of results you want per page/chunk [25, 50, 75, 100].",
-          "type": "integer",
-          "location": "query",
-          "required": false
-        },
-        "page": {
-          "description": "The page/chunk of results to be requested.",
-          "type": "integer",
-          "location": "query",
-          "required": false
         }
       }
-    }
+  },
+
+	"LocationWidgetPage": {
+	  "httpMethod": "GET",
+	  "uri": "location/widget-page",
+	  "summary": "Return location based, paged events data for a widget. These paged listings are grouped by date and returned in date order. The response does not contain the other metadata needed for the widget which must be requested seperately from the location/widget endpoint.",
+	  "parameters": {
+		"location": {
+		  "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting [name:, postcode:, geo:]. NB: Values applied to this parameter with the name may be ambiguous E.G: Newcastle. Use location/search endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.",
+		  "type": "string",
+		  "location": "query",
+		  "required": true
+		},
+		"radius_distance": {
+		  "description": "The furthest distance from the location you want events listed for.",
+		  "type": "integer",
+		  "location": "query",
+		  "required": false
+		},
+		"distance_unit": {
+		  "description": "The unit of measurment that should be applied to the radius_distance value [mi, km].",
+		  "enum": ["mi", "km"],
+		  "type": "string",
+		  "location": "query",
+		  "required": false
+		},
+		"genres": {
+		  "description": "A serialised JSON array of genres you want events listed for.",
+		  "type": "string",
+		  "location": "query",
+		  "required": false
+		},
+		"encode": {
+		  "description": "The character encoding for the data response.",
+		  "type": "string",
+		  "location": "query",
+		  "required": false
+		},
+		"results_per_page": {
+		  "description": "The number of results you want per page/chunk [25, 50, 75, 100].",
+		  "type": "integer",
+		  "location": "query",
+		  "required": false
+		},
+		"page": {
+		  "description": "The page/chunk of results to be requested.",
+		  "type": "integer",
+		  "location": "query",
+		  "required": false
+		}
+	  }
+	}
   }
 }

@@ -196,4 +196,9 @@ class Client extends GuzzleClient
         $request = $this->getCommand('LocationWidget', $args);
         return $request->execute();
     }
+
+	public function locationWidgetPage($args) {
+		$request = $this->getCommand('LocationWidgetPage', $args);
+		return $request->execute();
+	}
 }
