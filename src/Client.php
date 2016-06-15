@@ -97,73 +97,73 @@ class Client extends GuzzleClient
         }
     }
 
-    public function venueList($args) {
-        $request = $this->getCommand('VenueList', $args);
+    public function venueList($parameters = []) {
+        $request = $this->getCommand('VenueList', $parameters);
         return $request->execute();
     }
 
-	public function venueRead($args) {
-        $request = $this->getCommand('VenueRead', $args);
+	public function venueRead($parameters = []) {
+        $request = $this->getCommand('VenueRead', $parameters);
         return $request->execute();
     }
 
-    public function venueEvents($args) {
-        $request = $this->getCommand('VenueEvents', $args);
+    public function venueEvents($parameters = []) {
+        $request = $this->getCommand('VenueEvents', $parameters);
         return $request->execute();
     }
 
-    public function venueImage($args) {
-        $request = $this->getCommand('VenueImage', $args);
+    public function venueImage($parameters = []) {
+        $request = $this->getCommand('VenueImage', $parameters);
         return $request->execute();
     }
 
-    public function venueWidget($args) {
-        $request = $this->getCommand('VenueWidget', $args);
+    public function venueWidget($parameters = []) {
+        $request = $this->getCommand('VenueWidget', $parameters);
         return $request->execute();
     }
 
-    public function artistList($args) {
-        $request = $this->getCommand('ArtistList', $args);
+    public function artistList($parameters = []) {
+        $request = $this->getCommand('ArtistList', $parameters);
         return $request->execute();
     }
 
-    public function artistRead($args) {
-        $request = $this->getCommand('ArtistRead', $args);
+    public function artistRead($parameters = []) {
+        $request = $this->getCommand('ArtistRead', $parameters);
         return $request->execute();
     }
 
-    public function artistEvents($args) {
-        $request = $this->getCommand('ArtistEvents', $args);
+    public function artistEvents($parameters = []) {
+        $request = $this->getCommand('ArtistEvents', $parameters);
         return $request->execute();
     }
 
-    public function artistImage($args) {
-        $request = $this->getCommand('ArtistImage', $args);
+    public function artistImage($parameters = []) {
+        $request = $this->getCommand('ArtistImage', $parameters);
         return $request->execute();
     }
 
-    public function artistWidget($args) {
-        $request = $this->getCommand('ArtistWidget', $args);
+    public function artistWidget($parameters = []) {
+        $request = $this->getCommand('ArtistWidget', $parameters);
         return $request->execute();
     }
 
-    public function eventList($args) {
-        $request = $this->getCommand('EventList', $args);
+    public function eventList($parameters = []) {
+        $request = $this->getCommand('EventList', $parameters);
         return $request->execute();
     }
 
-    public function eventRead($args) {
-        $request = $this->getCommand('EventRead', $args);
+    public function eventRead($parameters = []) {
+        $request = $this->getCommand('EventRead', $parameters);
         return $request->execute();
     }
 
-    public function eventGenres($args) {
-        $request = $this->getCommand('EventGenres', $args);
+    public function eventGenres($parameters = []) {
+        $request = $this->getCommand('EventGenres', $parameters);
         return $request->execute();
     }
 
-    public function eventImage($args) {
-        $request = $this->getCommand('EventImage', $args);
+    public function eventImage($parameters = []) {
+        $request = $this->getCommand('EventImage', $parameters);
         return $request->execute();
     }
 
@@ -182,23 +182,23 @@ class Client extends GuzzleClient
         return $request->execute();
     }
 
-    public function userTrackingUpdate($args) {
-        $request = $this->getCommand('UserTrackingUpdate', $args);
+    public function userTrackingUpdate($parameters = []) {
+        $request = $this->getCommand('UserTrackingUpdate', $parameters);
         return $request->execute();
     }
 
-    public function locationSearch($args) {
-        $request = $this->getCommand('LocationSearch', $args);
+    public function locationSearch($parameters = []) {
+        $request = $this->getCommand('LocationSearch', $parameters);
         return $request->execute();
     }
 
-    public function locationWidget($args) {
-        $request = $this->getCommand('LocationWidget', $args);
+    public function locationWidget($parameters = []) {
+        $request = $this->getCommand('LocationWidget', $parameters);
         return $request->execute();
     }
 
-	public function locationWidgetPage($args) {
-		$request = $this->getCommand('LocationWidgetPage', $args);
+	public function locationWidgetPage($parameters = []) {
+		$request = $this->getCommand('LocationWidgetPage', $parameters);
 		return $request->execute();
 	}
 }

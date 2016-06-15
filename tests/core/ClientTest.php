@@ -16,8 +16,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
         parent::setUp();
         $this->client = Client::factory(
             [
-                'client_id'     => 'id1',
-                'client_secret' => 'secret1',
+                'client_id'     => '03bfd1e5055cd0f8a6f615cd4252cdb2062c9d75',
+                'client_secret' => 'a25d3f729bb2a2504e39835c0db3635d3e2a4813',
             ]
         );
     }
