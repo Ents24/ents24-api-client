@@ -10,13 +10,13 @@
           "description": "The parent of genre you want a list of genres for. E.G: music, comedy or theatre-shows.",
           "type": "string",
           "location": "query",
-          "required": "false"
+          "required": false
         },
         "parent_genres_only": {
           "description": "Decides whether or not subgenres are included in the genre list. NB: This parameter is disregarded if the parent_key parameter is set in the same request.",
           "type": "boolean",
           "location": "query",
-          "required": "false"
+          "required": false
         }
       }
     },
