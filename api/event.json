@@ -21,7 +21,7 @@
       }
     },
 
-    "ListEvents": {
+    "EventList": {
       "httpMethod": "GET",
       "uri": "event/list",
       "summary": "Multiple event objects with selected fields. NB: You must filter resources retrieved from this end-point with at least one of the following request parameters: location, name, venue_name, venue_postcode, artist_name, ids.",
@@ -32,6 +32,12 @@
           "location": "query",
           "required": false
         },
+        "name": {
+          "description": "Search term for the name of the events to be listed.",
+          "type": "string",
+          "location": "query",
+          "required": false
+        },        
         "location": {
           "description": "The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. (name:, postcode:, geo:). NB: Values applied to this parameter with the name may be ambiguous E.G: Newcastle. Use location/search endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.",
           "type": "string",
