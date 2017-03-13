@@ -33,7 +33,7 @@
           "required": false
         },
         "name": {
-          "description": "filter parameter omited from API",
+          "description": "Search term for the name of the events to be listed.",
           "type": "string",
           "location": "query",
           "required": false
