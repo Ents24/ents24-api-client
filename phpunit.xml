@@ -1,17 +1,19 @@
 <phpunit
     bootstrap="vendor/autoload.php"
-    colors="true"
-    stopOnError="true">
+    stopOnError="true"
+	stopOnFailure="false"
+	stopOnIncomplete="false"
+	stopOnSkipped="false"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	colors="true"
+	strict="true"
+	verbose="true">
 
     <testsuites>
         <testsuite name="core">
             <directory>tests/core</directory>
-        </testsuite>
-        <testsuite name="endpoints">
-            <directory>tests/endpoints</directory>
-        </testsuite>
-        <testsuite name="artist_endpoints">
-            <directory>tests/endpoints/artist</directory>
         </testsuite>
     </testsuites>
 
